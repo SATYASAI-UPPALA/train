@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo"> <!-- Replace logo.png with your logo image -->
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Book Ticket</a></li>
+                <li><a href="booking-history.html">My Bookings</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="search.html" class="active">Train Search and Seat Availability</a></li>
+            </ul>
+        </div>
+        <div class="logout">
+            <button onclick="window.location.href='login.html'">Logout</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Search Section -->
+        <section class="search-container">
+          <h1>Train Search and Seat Availability</h1>
+          <form id="train-search-form">
+            <label for="origin">Origin:</label>
+            <input type="text" id="origin" name="origin" placeholder="Enter origin station" required>
+    
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" placeholder="Enter destination station" required>
+    
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+    
+            <button type="submit">Search</button>
+          </form>
+        </section>
+    
+        <!-- Results Section -->
+        <section id="results" class="results-container">
+          <h2>Search Results</h2>
+          <div id="train-results"></div>
+        </section>
+      </main>
+
+
+      <script>
+        const form = document.getElementById('train-search-form');
+        const resultsSection = document.getElementById('results');
+        const resultsContainer = document.getElementById('train-results');
+    
+        form.addEventListener('submit', (event) => {
+          event.preventDefault(); // Prevent page reload
+    
+          const origin = document.getElementById('origin').value;
+          const destination = document.getElementById('destination').value;
+          const date = document.getElementById('date').value;
+    
+          // Display results dynamically
+          resultsContainer.innerHTML = `
+            <div class="train-result">
+              <h3>Train from ${origin} to ${destination}</h3>
+              <p>Train Number : 172554
+              <p>Date: ${date}</p>
+              <p>Time : 18.25</p>
+              <p>Sleeper: Available</p>
+              <p>AC 2-Tier: Waitlisted</p>
+              <p>AC 3-Tier: Available</p>
+              <p>Sleeper : Available</p>
+              <button onclick="window.location.href='booking.html'">Book Now</button>
+            </div>
+            <div class="train-result">
+              <h3>Train from ${origin} to ${destination}</h3>
+              <p>Train Number : 22586
+              <p>Date: ${date}</p>
+              <p>Time : 23.25</p>
+              <p>Sleeper: Available</p>
+              <p>AC 2-Tier: Waitlisted</p>
+              <p>AC 3-Tier: Available</p>
+              <p>Sleeper : Available</p>
+              <button onclick="window.location.href='booking.html'"> Book Now</button>
+            </div>
+          `;
+    
+          resultsSection.style.display = 'block';
+        });
+      </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .links {
+            text-align: center;
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .forgot-password-container {
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <!-- Forgot Password Section -->
+        <div class="forgot-password-container" id="forgotPasswordContainer">
+            <h3>Reset Password</h3>
+            <form id="forgotPasswordForm" onsubmit="return resetPassword()">
+                <div class="input-group">
+                    <label for="email">Enter your email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <button type="submit">Send Reset Link</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="links">
+            <a href="#" onclick="showForgotPassword()">Forgot Password?</a><br>
+            <a href="register.html">Create a New Account</a>
+        </div>
+    </div>
+
+    <script>
+        // Predefined valid credentials
+        const validCredentials = {
+            username: "user123",
+            password: "password123"
+        };
+
+        // Login validation function
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                alert("Login successful!");
+
+                window.location.href = "index.html";  // Redirect to index page
+                return false;  // Prevent form submission
+            } else {
+                alert("Invalid credentials. Please try again.");
+                return false;
+            }
+        }
+
+        // Show the Forgot Password form
+        function showForgotPassword() {
+            document.getElementById("forgotPasswordContainer").style.display = "block";
+        }
+
+        // Handle password reset (no backend logic in this example)
+        function resetPassword() {
+            const email = document.getElementById("email").value;
+            alert(`Password reset link sent to ${email}`);
+            // After sending the reset link, hide the form
+            document.getElementById("forgotPasswordContainer").style.display = "none";
+            return false;
+        }
+    </script>
+
+</body>
+</html>

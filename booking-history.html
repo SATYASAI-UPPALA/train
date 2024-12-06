@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <div class="navbar">
+    <div class="logo">
+        <img src="logo.jpg" alt="Logo"> <!-- Replace logo.png with your logo image -->
+    </div>
+    <div class="nav-links">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html">Book Ticket</a></li>
+            <li><a href="booking-history.html">My Bookings</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="search.html" class="active">Train Search and Seat Availability</a></li>
+        </ul>
+    </div>
+    <div class="logout">
+        <button onclick="window.location.href='login.html'">Logout</button>
+    </div>
+</div>
+
+
+    <div class="container">
+        <h1 style=" text-align: center;
+          margin-bottom: 20px;">Booking History</h1>
+        
+        <!-- Filters Section -->
+        <div class="filters">
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate">
+          
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate">
+          
+          <label for="train">Train:</label>
+          <input type="text" id="train" placeholder="Train Number or Name">
+          
+          <label for="status">Booking Status:</label>
+          <select id="status">
+            <option value="">--Select Status--</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="pending">Pending</option>
+          </select>
+          
+          <button onclick="applyFilters()">Apply Filters</button>
+          <button onclick="resetFilters()">Reset Filters</button>
+        </div>
+    
+        <!-- Booking History Table -->
+        <table id="bookingTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Train</th>
+              <th>Status</th>
+              <th>Mobile Number</th>
+              <th>Origin</th>
+              <th>Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data rows will go here -->
+          </tbody>
+        </table>
+      </div>
+    
+      <script>
+        // Sample booking data with additional fields
+        const bookingData = [
+          { date: '2024-12-01', train: 'Train 101', status: 'confirmed', mobile: '1234567890', origin: 'New York', destination: 'Chicago' },
+          { date: '2024-12-02', train: 'Train 102', status: 'cancelled', mobile: '2345678901', origin: 'Los Angeles', destination: 'San Francisco' },
+          { date: '2024-12-03', train: 'Train 103', status: 'pending', mobile: '3456789012', origin: 'Boston', destination: 'Miami' },
+          { date: '2024-12-04', train: 'Train 104', status: 'confirmed', mobile: '4567890123', origin: 'Dallas', destination: 'Houston' },
+          { date: '2024-12-05', train: 'Train 105', status: 'confirmed', mobile: '5678901234', origin: 'Atlanta', destination: 'New Orleans' },
+          { date: '2024-12-06', train: 'Train 106', status: 'cancelled', mobile: '6789012345', origin: 'Seattle', destination: 'Portland' },
+          { date: '2024-12-07', train: 'Train 107', status: 'pending', mobile: '7890123456', origin: 'Denver', destination: 'Las Vegas' },
+          { date: '2024-12-08', train: 'Train 108', status: 'confirmed', mobile: '8901234567', origin: 'Phoenix', destination: 'Tucson' },
+          { date: '2024-12-09', train: 'Train 109', status: 'cancelled', mobile: '9012345678', origin: 'San Diego', destination: 'Los Angeles' },
+          { date: '2024-12-10', train: 'Train 110', status: 'confirmed', mobile: '0123456789', origin: 'Washington DC', destination: 'Philadelphia' }
+        ];
+    
+        // Render the table with booking data
+        function renderTable(filteredData) {
+          const tableBody = document.querySelector('#bookingTable tbody');
+          tableBody.innerHTML = ''; // Clear existing rows
+    
+          filteredData.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${item.date}</td>
+              <td>${item.train}</td>
+              <td>${item.status}</td>
+              <td>${item.mobile}</td>
+              <td>${item.origin}</td>
+              <td>${item.destination}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+        }
+    
+        // Apply filters based on user input
+        function applyFilters() {
+          const startDate = document.getElementById('startDate').value;
+          const endDate = document.getElementById('endDate').value;
+          const train = document.getElementById('train').value.toLowerCase();
+          const status = document.getElementById('status').value;
+    
+          let filteredData = bookingData;
+    
+          // Filter by start date
+          if (startDate) {
+            filteredData = filteredData.filter(item => item.date >= startDate);
+          }
+    
+          // Filter by end date
+          if (endDate) {
+            filteredData = filteredData.filter(item => item.date <= endDate);
+          }
+    
+          // Filter by train
+          if (train) {
+            filteredData = filteredData.filter(item => item.train.toLowerCase().includes(train));
+          }
+    
+          // Filter by status
+          if (status) {
+            filteredData = filteredData.filter(item => item.status === status);
+          }
+    
+          renderTable(filteredData);
+        }
+    
+        // Reset all filters and reload the full booking history
+        function resetFilters() {
+          document.getElementById('startDate').value = '';
+          document.getElementById('endDate').value = '';
+          document.getElementById('train').value = '';
+          document.getElementById('status').value = '';
+    
+          renderTable(bookingData); // Show full data
+        }
+    
+        // Initial table render with all data
+        renderTable(bookingData);
+      </script>
+    
+    
+</body>
+</html>

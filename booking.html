@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo"> <!-- Replace logo.png with your logo image -->
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Book Ticket</a></li>
+                <li><a href="booking-history.html">My Bookings</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="search.html" class="active">Train Search and Seat Availability</a></li>
+            </ul>
+        </div>
+        <div class="logout">
+            <button onclick="window.location.href='login.html'">Logout</button>
+        </div>
+    </div>
+
+
+    <div class="booking-container">
+        <h2>Book Ticket</h2>
+        <form id="ticket-booking-form">
+            <div class="form-group">
+                <label for="id" class="form-label">ID:</label>
+                <input type="text" id="id" name="id" class="form-control" readonly value="AUTO123">
+            </div>
+            
+            <div class="form-group">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobile" class="form-label">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="age" class="form-label">Age:</label>
+                <input type="number" id="age" name="age" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="boarding-station" class="form-label">Boarding Station:</label>
+                <input type="text" id="boarding-station" name="boarding-station" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="destination-station" class="form-label">Destination Station:</label>
+                <input type="text" id="destination-station" name="destination-station" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ticket-category" class="form-label">Ticket Category:</label>
+                <select id="ticket-category" name="ticket-category" class="form-select" required>
+                    <option value="first-class">First Class</option>
+                    <option value="ac-tier-1">A.C Tier 1</option>
+                    <option value="ac-tier-2">A.C Tier 2</option>
+                    <option value="tatkal">Tatkal</option>
+                    <option value="general">General</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="trains" class="form-label">Trains Available:</label>
+                <select id="trains" name="trains" class="form-select" required>
+                    <option value="train1">Train 1</option>
+                    <option value="train2">Train 2</option>
+                    <option value="train3">Train 3</option>
+                    <option value="train4">Train 4</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="number-of-tickets" class="form-label">Number of Tickets:</label>
+                <input type="number" id="number-of-tickets" name="number-of-tickets" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn-book-now">Book Now</button>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .links {
+            text-align: center;
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Create a New Account</h2>
+        <form id="registerForm" onsubmit="return validateRegistration()">
+            <div class="input-group">
+                <label for="newUsername">Username</label>
+                <input type="email" id="newUsername" name="newUsername" required>
+            </div>
+            <div class="input-group">
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="input-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <div class="links">
+            <a href="login.html">Back to Login</a>
+        </div>
+    </div>
+
+    <script>
+        // Predefined valid credentials
+        const validCredentials = {
+            username: "user123",
+            password: "password123"
+        };
+
+        // Registration validation function
+        function validateRegistration() {
+            const newUsername = document.getElementById("newUsername").value;
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Check if passwords match
+            if (newPassword !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            // Check if username already exists
+            if (newUsername === validCredentials.username) {
+                alert("Username already exists.");
+                return false;
+            }
+
+            // Simulate new account creation
+            validCredentials.username = newUsername;
+            validCredentials.password = newPassword;
+            alert("Account created successfully!");
+            window.location.href = "login.html";  // Redirect to login page after successful registration
+            return false;
+        }
+    </script>
+
+</body>
+</html>
